@@ -1,33 +1,58 @@
-let number1 = 10;
-let number2 = 5;
-let message = "";
+$(".show-btn").on("click", function () {
+  const $card = $(this).closest(".card");
+  const $inner = $card.find(".inner");
 
-let sum = number1 + number2;
-let product = number1 * number2;
+  $inner.stop(true, true).slideDown(200);
+  $inner.find("p").show();
 
-if (sum > 12) {
-  message = "The sum is greater than 12.";
-} else {
-  message = "The sum is 12 or less.";
+  if ($inner.find(".clear-btn").length === 0) {
+    $inner.append('<button class="clear-btn">Sabai Hataun</button>');
+  }
+
+  $(this).attr("aria-expanded", "true");
+});
+
+$(".card")
+  .on("mouseenter", function () {
+    $(this).css("background", "#eef6ff");
+  })
+  .on("mouseleave", function () {
+    $(this).css("background", "#f5f7fb");
+  })
+  .on("mousedown", function () {
+    $(this).css("background", "#ffeaea");
+  })
+  .on("mouseup", function () {
+    $(this).css("background", "#eaffea");
+  });
+
+let clickTimer = null;
+const singleBump = 2;
+const doubleBump = 6;
+
+function bumpFont($el, px) {
+  const cur = parseFloat($el.css("font-size")) || 16;
+  $el.css("font-size", cur + px + "px");
 }
 
-let loopText = "";
-for (let i = 1; i <= 3; i++) {
-  loopText += "Loop count: " + i + "<br>";
-}
-document.getElementById("output").innerHTML =
-  "Number 1: " +
-  number1 +
-  "<br>" +
-  "Number 2: " +
-  number2 +
-  "<br>" +
-  "Sum: " +
-  sum +
-  "<br>" +
-  "Product: " +
-  product +
-  "<br>" +
-  message +
-  "<br><br>" +
-  loopText;
+$(document).on("click", ".grow", function () {
+  const $t = $(this);
+  clearTimeout(clickTimer);
+  clickTimer = setTimeout(() => bumpFont($t, singleBump), 220);
+});
+
+$(document).on("dblclick", ".grow", function () {
+  const $t = $(this);
+  clearTimeout(clickTimer);
+  bumpFont($t, doubleBump);
+});
+
+$(document).on("click", ".clear-btn", function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const $card = $(this).closest(".card");
+
+  $card.slideUp(180, function () {
+    $card.remove();
+  });
+});
