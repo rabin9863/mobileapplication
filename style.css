@@ -1,72 +1,37 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  text-align: center;
+  margin: 0;
+  background-color: #f4f4f4;
 }
 
 .container {
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
   width: 80%;
-  margin: auto;
+  font-size: 16px;
 }
 
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-header p {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
-}
-
-section#content {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 50px;
-}
-
-.box {
-  width: 150px;
-  height: 150px;
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
   background-color: #4caf50;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-size: 1.5rem;
-  opacity: 0;
-  position: relative;
-  animation: slideLeftRight 15s linear infinite;
+  border: none;
+  border-radius: 5px;
 }
 
-footer p {
-  font-size: 1rem;
-  color: #888;
-}
-
-@keyframes slideLeftRight {
-  0% {
-    opacity: 1;
-    transform: translateX(-200px);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-200px);
-  }
+button:hover {
+  background-color: #45a049;
 }
